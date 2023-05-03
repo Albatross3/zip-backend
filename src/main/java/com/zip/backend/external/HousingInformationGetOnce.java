@@ -1,0 +1,67 @@
+package com.zip.backend.external;
+
+import com.zip.backend.domain.housing.Housing;
+import com.zip.backend.domain.housing.HousingRepository;
+import jakarta.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Map;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+// 딱 1번만 사용할 Component -> DB 에 적재되는 순간 필요없음
+@Component
+public class HousingInformationGetOnce {
+
+  private final HousingRepository housingRepository;
+
+  public HousingInformationGetOnce(HousingRepository housingRepository) {
+    this.housingRepository = housingRepository;
+  }
+
+  private final String BASE_URL = "https://api.odcloud.kr/api";
+  private final String HOUSING_INFORMATION_PATH = "/ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDetail";
+  private final String SPECIFIC_HOUSING_INFORMATION_PATH = "/ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancMdl";
+  private final String SERVICE_KEY = "&serviceKey=qPFnYQeoJF7lXQSeolPofGHz/GC6GTFg/LKVtVrdZCamO3KXStAmdMib2G2Z3fGanXLULbxjmzfxeJVZrRQCLw==";
+
+
+  @PostConstruct
+  public void createHousingData() {
+    String query = "?page=1&perPage=30&cond[RCRIT_PBLANC_DE::GTE]=2023-04-10";
+    ResponseEntity<Map> resultMap = fetch(HOUSING_INFORMATION_PATH, query);
+
+    ArrayList<Map> resultArrayListMap = (ArrayList<Map>) resultMap.getBody().get("data");
+
+    for (Map<String, Object> map : resultArrayListMap) {
+      String HOUSE_TYPE_CODE = (String) map.get("HOUSE_SECD");
+      if(HOUSE_TYPE_CODE.equals("10")) continue; // 신혼 희망 타운 코드 : 10
+      Housing housing = Housing.builder()
+          .HOUSE_MANAGE_NO(Long.valueOf((Integer)map.get("HOUSE_MANAGE_NO"))) // Long.valueOf((Integer)map.get("HOUSE_MANAGE_NO"))
+          .HOUSE_NM((String)map.get("HOUSE_NM"))
+          .HOUSE_SECD_NM((String)map.get("HOUSE_SECD_NM"))
+          .HOUSE_DTL_SECD_NM((String)map.get("HOUSE_DTL_SECD_NM"))
+          .SUBSCRPT_AREA_CODE_NM((String)map.get("SUBSCRPT_AREA_CODE_NM"))
+          .HSSPLY_ADRES((String)map.get("HSSPLY_ADRES"))
+          .TOT_SUPLY_HSHLDCO(String.valueOf((Integer)map.get("TOT_SUPLY_HSHLDCO")))
+          .RCRIT_PBLANC_DE((String)map.get("RCRIT_PBLANC_DE"))
+          .RCEPT_BGNDE((String)map.get("RCEPT_BGNDE"))
+          .RCEPT_ENDDE((String)map.get("RCEPT_ENDDE"))
+          .SPSPLY_RCEPT_BGNDE((String)map.get("SPSPLY_RCEPT_BGNDE"))
+          .SPSPLY_RCEPT_ENDDE((String)map.get("SPSPLY_RCEPT_ENDDE"))
+          .PRZWNER_PRESNATN_DE((String)map.get("PRZWNER_PRESNATN_DE"))
+          .MVN_PREARNGE_YM((String)map.get("MVN_PREARNGE_YM"))
+          .build();
+      housingRepository.save(housing);
+    }
+  }
+
+  public ResponseEntity<Map> fetch(String path, String query) {
+    RestTemplate restTemplate = new RestTemplate();
+    HttpEntity<?> entity = new HttpEntity<>(new HttpHeaders());
+    return restTemplate.exchange(BASE_URL + path + query + SERVICE_KEY, HttpMethod.GET, entity, Map.class);
+  }
+
+}
