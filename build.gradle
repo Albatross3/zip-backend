@@ -18,6 +18,7 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	implementation 'org.seleniumhq.selenium:selenium-java:4.1.2' // selenium
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
 

@@ -18,7 +18,7 @@ public class Housing {
   @Id // id 값을 외부 API 를 통해 지정할 수 있음
   private Long HOUSE_MANAGE_NO;
 
-  @Column
+  @Column (length = 60000)
   private String IMAGE; // 크롤링 이후에 생성
 
   @Column
@@ -67,5 +67,9 @@ public class Housing {
 
   public Long getHOUSE_MANAGE_NO() {
     return HOUSE_MANAGE_NO;
+  }
+
+  public String getHOUSE_NM() {
+    return HOUSE_NM;
   }
 }
