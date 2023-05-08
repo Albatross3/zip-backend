@@ -20,6 +20,7 @@ dependencies {
 //	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 	implementation 'org.seleniumhq.selenium:selenium-java:4.1.2' // selenium
 	implementation 'org.jsoup:jsoup:1.14.2' // jsoup
+	implementation 'org.springframework.boot:spring-boot-starter-batch' // spring-batch
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
