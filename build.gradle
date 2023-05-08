@@ -17,8 +17,9 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+//	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 	implementation 'org.seleniumhq.selenium:selenium-java:4.1.2' // selenium
+	implementation 'org.jsoup:jsoup:1.14.2' // jsoup
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
