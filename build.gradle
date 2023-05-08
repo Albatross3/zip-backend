@@ -21,6 +21,7 @@ dependencies {
 	implementation 'org.seleniumhq.selenium:selenium-java:4.1.2' // selenium
 	implementation 'org.jsoup:jsoup:1.14.2' // jsoup
 	implementation 'org.springframework.boot:spring-boot-starter-batch' // spring-batch
+	implementation 'org.springframework.boot:spring-boot-starter-quartz' // spring-quartz
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
