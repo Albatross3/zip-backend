@@ -35,5 +35,10 @@ jobs:
     - run: touch ./src/main/resources/application.yml
     - run: echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/application.yml
 
+    - name: actions-setup-mysql
+      uses: shogo82148/actions-setup-mysql@v1.17.1
+      with:
+        mysql-version: '8.0'
+
     - name: Build with Gradle
       run: ./gradlew clean build
