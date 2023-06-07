@@ -33,7 +33,7 @@ public class HousingInformationGetOnce {
   private final String SERVICE_KEY = "&serviceKey=qPFnYQeoJF7lXQSeolPofGHz/GC6GTFg/LKVtVrdZCamO3KXStAmdMib2G2Z3fGanXLULbxjmzfxeJVZrRQCLw==";
 
 
-  @PostConstruct
+//  @PostConstruct
   public void createHousingData() {
     // 모집공고 5/3 까지 데이터만 가져오기
     String query = "?page=1&perPage=30&cond[RCRIT_PBLANC_DE::GTE]=2023-04-10&cond[RCRIT_PBLANC_DE::LTE]=2023-05-03";
