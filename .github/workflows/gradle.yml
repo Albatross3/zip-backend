@@ -36,14 +36,11 @@ jobs:
     - run: echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/application.yml
 
     - name: actions-setup-mysql
-      uses: shogo82148/actions-setup-mysql@v1.17.1
+      uses: samin/mysql-action@v1
       with:
-        mysql-version: '8.0'
-        database: 'housing'
-#        user: 'root'
-        root-password: 'local1234'
-
-
+        mysql version: '8.0'
+        mysql database: 'housing'
+        mysql root password: 'local1234'
 
     - name: Build with Gradle
       run: ./gradlew clean build
