@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-batch' // spring-batch
 	implementation 'org.springframework.boot:spring-boot-starter-quartz' // spring-quartz
 
+//	implementation 'mysql:mysql-connector-java'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	compileOnly 'org.projectlombok:lombok'

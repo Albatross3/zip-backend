@@ -39,6 +39,11 @@ jobs:
       uses: shogo82148/actions-setup-mysql@v1.17.1
       with:
         mysql-version: '8.0'
+        mysql database: 'housing'
+        mysql user: 'root'
+        mysql password: 'local1234'
+
+
 
     - name: Build with Gradle
       run: ./gradlew clean build
