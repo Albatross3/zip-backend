@@ -40,7 +40,7 @@ jobs:
       with:
         mysql version: '8.0'
         mysql database: 'housing'
-        mysql root password: 'local1234'
+        mysql root password: ${{ secrets.ROOT_PASSWORD }}
 
     - name: Build with Gradle
       run: ./gradlew clean build
