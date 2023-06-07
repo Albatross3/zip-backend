@@ -36,7 +36,7 @@ jobs:
     - run: echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/application.yml
 
     - name: actions-setup-mysql
-      uses: samin/mysql-action@v1
+      uses: mirromutth/mysql-action@v1.1
       with:
         mysql version: '8.0'
         mysql database: 'housing'
