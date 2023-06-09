@@ -1,7 +1,7 @@
 package com.zip.backend.domain.batch;
 
-import com.zip.backend.domain.task.FirstTaskLet;
-import com.zip.backend.domain.task.SecondTaskLet;
+import com.zip.backend.domain.batch.task.FirstTaskLet;
+import com.zip.backend.domain.batch.task.SecondTaskLet;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;

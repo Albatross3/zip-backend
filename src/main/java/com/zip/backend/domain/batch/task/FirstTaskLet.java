@@ -1,4 +1,4 @@
-package com.zip.backend.domain.task;
+package com.zip.backend.domain.batch.task;
 
 import com.zip.backend.domain.housing.Housing;
 import com.zip.backend.domain.housing.HousingDetail;
